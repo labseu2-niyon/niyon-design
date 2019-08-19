@@ -1,25 +1,25 @@
-# niyon-style-test
+# niyon-design
 
 run ```yarn```
 
 ## To use locally
 run ```yarn link``` in this project
 
-use ```yarn link niyon-test``` in another react project, then use as use as usual i.e. ```import <component> from 'niyon-test```
+use ```yarn link niyon-design``` in another react project, then use as use as usual i.e. ```import <component> from 'niyon-design```
 
 ## To use from npm
 create a react app
 
-```yarn add niyon-test```
+```yarn add niyon-design```
 
-```import <component> from 'niyon-test'```
+```import <component> from 'niyon-design'```
 
 # Components
 
 ## Card
 
 ```jsx
-import { Card } from 'niyon-test';
+import { Card } from 'niyon-design';
 
 <Card>
   text
@@ -29,7 +29,7 @@ import { Card } from 'niyon-test';
 ## Button
 
 ```jsx
-import { Button } from 'niyon-test';
+import { Button } from 'niyon-design';
 
 <Button>
   text
