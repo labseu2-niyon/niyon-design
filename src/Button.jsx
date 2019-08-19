@@ -1,34 +1,35 @@
 import React from "react";
 import styled from "styled-components";
+import { darken } from "polished";
 
 const B = styled.button`
   height: 40px;
   width: ${({ width }) => width || "150px"};
-  background: ${({ themeColor }) => `${themeColor.light}`};
+  background: ${({ themeColor }) => `${themeColor}`};
   border: none;
   color: white;
-  border-radius: 4px;
+  border-radius: 25px;
   transition: background 400ms;
   cursor: pointer;
 
   &:hover {
-    background: ${({ themeColor }) => `${themeColor.dark}`};
+    background: ${({ themeColor }) => `${darken(0.2, themeColor)}`};
   }
 `;
 
 const BRaised = styled.button`
   height: 40px;
   width: ${({ width }) => width || "150px"};
-  background: ${({ themeColor }) => `${themeColor.light}`};
+  background: ${({ themeColor }) => `${themeColor}`};
   border: none;
   color: white;
-  border-radius: 4px;
+  border-radius: 25px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 400ms, background 400ms;
   cursor: pointer;
 
   &:hover {
-    background: ${({ themeColor }) => `${themeColor.dark}`};
+    background: ${({ themeColor }) => `${darken(0.2, themeColor)}`};
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
@@ -38,36 +39,31 @@ const BOutline = styled.button`
   height: 40px;
   width: ${({ width }) => width || "150px"};
   background: none;
-  border: ${({ themeColor }) => `1px solid ${themeColor.light}`};
-  color: ${({ themeColor }) => `${themeColor.light}`};
-  border-radius: 4px;
-  transition: border 400ms, background 400ms;
+  border: ${({ themeColor }) => `1px solid ${themeColor}`};
+  color: ${({ themeColor }) => `${themeColor}`};
+  border-radius: 25px;
+  transition: border 400ms, background 400ms, color 400ms;
   cursor: pointer;
 
   &:hover {
-    border: ${({ themeColor }) => `1px solid ${themeColor.dark}`};
-    color: ${({ themeColor }) => `${themeColor.dark}`};
-    background: #ddd;
+    border: ${({ themeColor }) => `1px solid ${darken(0.2, themeColor)}`};
+    color: ${({ themeColor }) => `${darken(0.2, themeColor)}`};
+    background: #f9f9f9;
   }
 `;
 
 const getColor = {
-  primary: {
-    light: "#33b1f5",
-    dark: "#05a2f7"
-  },
-  secondary: {
-    light: "#eb4034",
-    dark: "#e80f00"
-  }
+  primary: "#042f4b",
+  secondary: "#ed1250"
 };
 
-function Button({ children, customStyles, outline, variant, raised }) {
+function Button(props) {
+  const { children, customStyles, outline, variant, raised } = props;
   const color = getColor[variant || "primary"];
 
   if (raised) {
     return (
-      <BRaised type="button" themeColor={color} {...customStyles}>
+      <BRaised type="button" {...props} themeColor={color} {...customStyles}>
         {children.toUpperCase()}
       </BRaised>
     );
@@ -75,14 +71,14 @@ function Button({ children, customStyles, outline, variant, raised }) {
 
   if (outline) {
     return (
-      <BOutline type="button" themeColor={color} {...customStyles}>
+      <BOutline type="button" {...props} themeColor={color} {...customStyles}>
         {children.toUpperCase()}
       </BOutline>
     );
   }
 
   return (
-    <B type="button" themeColor={color} {...customStyles}>
+    <B type="button" {...props} themeColor={color} {...customStyles}>
       {children.toUpperCase()}
     </B>
   );
